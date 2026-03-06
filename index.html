@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ÉduGest Bénin | L'Écosystème Global de Gestion Scolaire</title>
+    <title>ÉduGest Bénin | Excellence Scolaire & Souveraineté Numérique</title>
     
     <!-- Polices -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,11 +34,16 @@
                     },
                     animation: {
                         'slow-float': 'float 10s ease-in-out infinite',
+                        'scroll': 'scroll 40s linear infinite',
                     },
                     keyframes: {
                         float: {
                             '0%, 100%': { transform: 'translateY(0)' },
                             '50%': { transform: 'translateY(-20px)' },
+                        },
+                        scroll: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
                         }
                     }
                 }
@@ -51,9 +56,9 @@
         h1, h2, h3, h4 { font-family: 'Fraunces', serif; color: #0F172A; }
 
         .glass-ui {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
             box-shadow: 0 20px 60px -15px rgba(15, 23, 42, 0.05);
         }
 
@@ -112,7 +117,6 @@
             border-color: #6366F1;
         }
 
-        /* Modal Styles */
         #article-modal {
             display: none;
             position: fixed;
@@ -123,7 +127,6 @@
         }
         #article-modal.active { display: flex; }
 
-        /* Accordion */
         .accordion-content {
             max-height: 0;
             overflow: hidden;
@@ -132,13 +135,18 @@
         .accordion-item.active .accordion-content { max-height: 300px; }
         .accordion-item.active .accordion-icon { transform: rotate(45deg); }
 
-        /* Mobile Menu */
         #mobile-menu {
             transform: translateX(100%);
             transition: transform 0.3s ease-in-out;
         }
         #mobile-menu.active {
             transform: translateX(0);
+        }
+
+        .bg-pattern {
+            background-image: radial-gradient(#6366F1 0.8px, transparent 0.8px);
+            background-size: 32px 32px;
+            opacity: 0.04;
         }
     </style>
 </head>
@@ -158,11 +166,12 @@
             <div class="w-10 h-10 md:w-12 md:h-12 bg-white rounded-xl md:rounded-2xl flex items-center justify-center text-xl md:text-2xl shadow-sm border border-slate-100">🇧🇯</div>
             <span class="text-xl md:text-2xl font-black tracking-tight text-navy">Édu<span class="text-accent">Gest</span></span>
         </div>
-        <div class="hidden lg:flex items-center gap-12">
-            <a href="#vision" class="text-sm font-bold text-slate-500 hover:text-accent transition-colors">Vision</a>
-            <a href="#product" class="text-sm font-bold text-slate-500 hover:text-accent transition-colors">Solution</a>
-            <a href="#impact" class="text-sm font-bold text-slate-500 hover:text-accent transition-colors">Impact</a>
-            <a href="#pricing" class="text-sm font-bold text-slate-500 hover:text-accent transition-colors">Tarifs</a>
+        <div class="hidden lg:flex items-center gap-10">
+            <a href="#vision" class="text-xs font-bold text-slate-500 hover:text-accent transition-colors">Vision</a>
+            <a href="#product" class="text-xs font-bold text-slate-500 hover:text-accent transition-colors">Produit</a>
+            <a href="#process" class="text-xs font-bold text-slate-500 hover:text-accent transition-colors">Déploiement</a>
+            <a href="#blog" class="text-xs font-bold text-slate-500 hover:text-accent transition-colors">ÉduMag</a>
+            <a href="#pricing" class="text-xs font-bold text-slate-500 hover:text-accent transition-colors">Tarifs</a>
             <button class="bg-accent text-white px-8 py-3 rounded-full text-sm font-black shadow-lg shadow-indigo-200 hover:scale-105 transition-all">Démo gratuite</button>
         </div>
         <div class="lg:hidden text-navy text-3xl cursor-pointer" onclick="toggleMobileMenu()">☰</div>
@@ -177,7 +186,8 @@
         <div class="flex flex-col gap-8 text-xl font-bold text-slate-600">
             <a href="#vision" onclick="toggleMobileMenu()">Vision</a>
             <a href="#product" onclick="toggleMobileMenu()">Solution</a>
-            <a href="#impact" onclick="toggleMobileMenu()">Impact</a>
+            <a href="#process" onclick="toggleMobileMenu()">Déploiement</a>
+            <a href="#blog" onclick="toggleMobileMenu()">ÉduMag</a>
             <a href="#pricing" onclick="toggleMobileMenu()">Tarifs</a>
             <button class="bg-accent text-white px-8 py-4 rounded-full text-lg font-black shadow-lg shadow-indigo-200 mt-4">Démo gratuite</button>
         </div>
@@ -193,12 +203,12 @@
                 <span class="inline-flex items-center gap-2 bg-white px-4 md:px-5 py-2 rounded-full text-[10px] md:text-xs font-black tracking-widest uppercase mb-6 md:mb-8 shadow-sm text-accent border border-indigo-50">
                     Souveraineté Numérique Béninoise 🇧🇯
                 </span>
-                <h1 class="text-4xl md:text-7xl lg:text-[5.5rem] font-black leading-[1.1] md:leading-[1] mb-6 md:mb-10 tracking-tighter">
+                <h1 class="text-4xl md:text-7xl lg:text-[6rem] font-black leading-[1.1] md:leading-[1] mb-6 md:mb-10 tracking-tighter">
                     L'Éducation <br/>
                     <span class="gradient-text italic">Redéfinie.</span>
                 </h1>
-                <p class="text-lg md:text-xl text-slate-500 mb-8 md:mb-12 max-w-lg leading-relaxed font-body">
-                    ÉduGest est l'ERP scolaire le plus complet du Bénin. Nous transformons votre établissement en un pôle d'excellence digitalisé, homologué et sécurisé.
+                <p class="text-lg md:text-xl text-slate-500 mb-8 md:mb-12 max-w-lg leading-relaxed font-body font-medium">
+                    ÉduGest est l'ERP scolaire le plus complet du Bénin. Nous transformons votre établissement en un pôle d'excellence digitalisé, homologué et à haute rentabilité.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 md:gap-6">
                     <button class="bg-accent text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-black text-base md:text-lg shadow-2xl shadow-indigo-200 hover:-translate-y-1 transition-all">Digitaliser mon École</button>
@@ -226,9 +236,9 @@
                                 <p class="text-3xl md:text-4xl font-black text-indigo-600">+85%</p>
                             </div>
                             <div class="p-4 md:p-6 bg-indigo-600 text-white rounded-2xl md:rounded-[2rem] shadow-xl">
-                                <p class="text-[9px] md:text-[10px] text-indigo-200 uppercase font-black mb-1 md:mb-2 tracking-widest">Gain de temps</p>
-                                <p class="text-2xl md:text-3xl font-black">40h/Trim</p>
-                                <p class="text-[9px] md:text-[10px] mt-1 opacity-60 italic">par Enseignant</p>
+                                <p class="text-[9px] md:text-[10px] text-indigo-200 uppercase font-black mb-1 md:mb-2 tracking-widest">Valeur Élève</p>
+                                <p class="text-2xl md:text-3xl font-black">10K/Mois</p>
+                                <p class="text-[9px] md:text-[10px] mt-1 opacity-60 italic">Standard Premium</p>
                             </div>
                         </div>
                         
@@ -250,43 +260,108 @@
         </div>
     </header>
 
-    <!-- SECTION PRODUIT -->
-    <section id="product" class="py-20 md:py-32 px-6 bg-white">
+    <!-- MUR DE CONFIANCE (TRUST WALL) -->
+    <section class="py-12 border-y border-slate-50 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <p class="text-center text-[10px] font-black uppercase tracking-[0.5em] text-slate-300 mb-10">Ils nous font confiance pour leur excellence</p>
+            <div class="flex animate-scroll whitespace-nowrap gap-16 md:gap-24 grayscale opacity-40">
+                <span class="text-2xl font-black uppercase tracking-tighter">Complexe Scolaire La Fontaine</span>
+                <span class="text-2xl font-black uppercase tracking-tighter">Lycée d'Excellence Cotonou</span>
+                <span class="text-2xl font-black uppercase tracking-tighter">Groupe Scolaire Élite</span>
+                <span class="text-2xl font-black uppercase tracking-tighter">Institution Notre Dame</span>
+                <span class="text-2xl font-black uppercase tracking-tighter">Complexe Scolaire La Fontaine</span>
+                <span class="text-2xl font-black uppercase tracking-tighter">Lycée d'Excellence Cotonou</span>
+                <span class="text-2xl font-black uppercase tracking-tighter">Groupe Scolaire Élite</span>
+                <span class="text-2xl font-black uppercase tracking-tighter">Institution Notre Dame</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- VISION AVANT/APRÈS -->
+    <section id="vision" class="py-20 md:py-32 px-6 bg-white">
         <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20 md:mb-28 reveal">
+                <span class="text-accent font-black uppercase text-xs tracking-[0.4em]">La Métamorphose</span>
+                <h2 class="text-4xl md:text-6xl font-black text-navy mt-6 leading-tight tracking-tighter">Votre école mérite <br/> <span class="text-indigo-600 italic">la paix de l'esprit</span></h2>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 md:gap-16 items-stretch">
+                <div class="p-10 md:p-14 bg-pastelLavender/30 rounded-[3rem] md:rounded-[4rem] border border-pastelLavender/50 reveal card-hover">
+                    <h3 class="text-2xl font-black mb-10 text-slate-400 flex items-center gap-4">
+                        <span class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-sm">🌑</span>
+                        Hier
+                    </h3>
+                    <ul class="space-y-8">
+                        <li class="flex gap-6">
+                            <div class="w-2 h-2 rounded-full bg-red-300 mt-2 shrink-0"></div>
+                            <p class="text-slate-500 font-medium text-lg leading-relaxed italic">"Nuits blanches à remplir manuellement des centaines de bulletins papiers."</p>
+                        </li>
+                        <li class="flex gap-6">
+                            <div class="w-2 h-2 rounded-full bg-red-300 mt-2 shrink-0"></div>
+                            <p class="text-slate-500 font-medium text-lg leading-relaxed italic">"Trésorerie floue : qui a payé la scolarité du 2ème trimestre ?"</p>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="p-10 md:p-14 bg-white rounded-[3rem] md:rounded-[4rem] shadow-2xl border-2 border-indigo-50 relative overflow-hidden reveal card-hover">
+                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-pastelMint rounded-full blur-[60px] opacity-60"></div>
+                    <h3 class="text-2xl font-black mb-10 text-indigo-600 flex items-center gap-4">
+                        <span class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center text-sm">☀️</span>
+                        Aujourd'hui
+                    </h3>
+                    <ul class="space-y-8">
+                        <li class="flex gap-6">
+                            <div class="w-2 h-2 rounded-full bg-indigo-600 mt-2 shrink-0"></div>
+                            <p class="text-navy font-bold text-lg leading-relaxed">Calculs instantanés. Bulletins digitaux envoyés d'un clic sur WhatsApp.</p>
+                        </li>
+                        <li class="flex gap-6">
+                            <div class="w-2 h-2 rounded-full bg-indigo-600 mt-2 shrink-0"></div>
+                            <p class="text-navy font-bold text-lg leading-relaxed">Paiement Mobile Money automatique. Recettes claires et sécurisées.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUTIONS & DIFFÉRENCIATION -->
+    <section id="product" class="py-20 md:py-32 px-6 bg-slate-50 relative">
+        <div class="bg-pattern absolute inset-0"></div>
+        <div class="max-w-7xl mx-auto relative z-10">
             <div class="grid lg:grid-cols-2 gap-12 md:gap-20 items-center mb-16 md:mb-32">
                 <div class="reveal">
-                    <span class="text-accent font-black uppercase text-xs tracking-[0.4em] mb-4 block">Le Produit</span>
-                    <h2 class="text-4xl md:text-5xl font-black text-navy leading-tight tracking-tighter mb-6 md:mb-8">Un cerveau numérique <br/> <span class="text-indigo-600">pour votre école.</span></h2>
+                    <span class="text-accent font-black uppercase text-xs tracking-[0.4em] mb-4 block">Notre Solution</span>
+                    <h2 class="text-4xl md:text-5xl font-black text-navy leading-tight tracking-tighter mb-8">Un cerveau numérique <br/> <span class="text-indigo-600">pour votre école.</span></h2>
                     <p class="text-base md:text-lg text-slate-500 leading-relaxed mb-6 font-body">
                         ÉduGest n'est pas un simple tableur. C'est un **Système d'Information Scolaire (SIS)** conçu pour centraliser toute la vie de votre établissement.
                     </p>
                     <div class="space-y-4">
-                        <div class="flex items-center gap-4 p-4 rounded-xl md:rounded-2xl bg-pastelBlue/20 border border-pastelBlue/50">
-                            <span class="text-xl md:text-2xl">☁️</span>
-                            <p class="text-xs md:text-sm font-bold">Mode Hybride : Fonctionne avec ou sans connexion internet.</p>
+                        <div class="flex items-center gap-4 p-4 rounded-xl bg-pastelBlue/30 border border-pastelBlue">
+                            <span class="text-2xl">☁️</span>
+                            <p class="text-xs md:text-sm font-bold">Hybride : Fonctionne avec ou sans connexion internet.</p>
                         </div>
-                        <div class="flex items-center gap-4 p-4 rounded-xl md:rounded-2xl bg-pastelMint/20 border border-pastelMint/50">
-                            <span class="text-xl md:text-2xl">🏦</span>
+                        <div class="flex items-center gap-4 p-4 rounded-xl bg-pastelMint/30 border border-pastelMint">
+                            <span class="text-2xl">🏦</span>
                             <p class="text-xs md:text-sm font-bold">Trésorerie Native : Réconciliation automatique MTN & Moov.</p>
                         </div>
                     </div>
                 </div>
                 <div class="reveal delay-100 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-                    <div class="p-6 md:p-8 bg-slate-50 rounded-2xl md:rounded-[3rem] border border-slate-100">
-                        <h4 class="font-black text-navy mb-3 md:mb-4">Pédagogie</h4>
-                        <p class="text-[11px] md:text-xs text-slate-400">Notes, coefficients, moyennes, rangs et livrets scolaires automatisés.</p>
+                    <div class="p-6 md:p-8 bg-white rounded-2xl md:rounded-[3rem] border border-slate-100 shadow-sm card-hover">
+                        <h4 class="font-black text-navy mb-4 italic">Pédagogie Élite</h4>
+                        <p class="text-[11px] md:text-xs text-slate-400">Notes, coefficients et bulletins homologués MEMP 🇧🇯.</p>
                     </div>
-                    <div class="p-6 md:p-8 bg-slate-50 rounded-2xl md:rounded-[3rem] border border-slate-100 sm:mt-8">
-                        <h4 class="font-black text-navy mb-3 md:mb-4">RH & Paie</h4>
-                        <p class="text-[11px] md:text-xs text-slate-400">Gestion des contrats, pointages et fiches de paie des enseignants.</p>
+                    <div class="p-6 md:p-8 bg-white rounded-2xl md:rounded-[3rem] border border-slate-100 shadow-sm sm:mt-8 card-hover">
+                        <h4 class="font-black text-navy mb-4 italic">RH & Finance</h4>
+                        <p class="text-[11px] md:text-xs text-slate-400">Suivi des paiements mobiles et gestion de la paie.</p>
                     </div>
-                    <div class="p-6 md:p-8 bg-slate-50 rounded-2xl md:rounded-[3rem] border border-slate-100">
-                        <h4 class="font-black text-navy mb-3 md:mb-4">Com' Parents</h4>
-                        <p class="text-[11px] md:text-xs text-slate-400">Espace parent web/mobile, SMS absences et carnets de liaison.</p>
+                    <div class="p-6 md:p-8 bg-white rounded-2xl md:rounded-[3rem] border border-slate-100 shadow-sm card-hover">
+                        <h4 class="font-black text-navy mb-4 italic">Portail Parents</h4>
+                        <p class="text-[11px] md:text-xs text-slate-400">Alertes absences et consultation des notes mobile.</p>
                     </div>
-                    <div class="p-6 md:p-8 bg-slate-50 rounded-2xl md:rounded-[3rem] border border-slate-100 sm:mt-8">
-                        <h4 class="font-black text-navy mb-3 md:mb-4">Analytics</h4>
-                        <p class="text-[11px] md:text-xs text-slate-400">Reporting stratégique sur les performances par classe et matière.</p>
+                    <div class="p-6 md:p-8 bg-white rounded-2xl md:rounded-[3rem] border border-slate-100 shadow-sm sm:mt-8 card-hover">
+                        <h4 class="font-black text-navy mb-4 italic">Analytics Live</h4>
+                        <p class="text-[11px] md:text-xs text-slate-400">Reporting stratégique sur la performance académique.</p>
                     </div>
                 </div>
             </div>
@@ -298,115 +373,119 @@
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16 md:mb-28 reveal">
                 <span class="text-accent font-black uppercase text-xs tracking-[0.4em]">Impact & Projections</span>
-                <h2 class="text-4xl md:text-6xl font-black text-navy mt-4 md:mt-6 leading-tight tracking-tighter">De l'investissement <br/> <span class="text-indigo-600 italic text-3xl md:text-6xl">à la rentabilité immédiate.</span></h2>
+                <h2 class="text-4xl md:text-6xl font-black text-navy mt-6 leading-tight tracking-tighter">Un ROI mesurable <br/> <span class="text-indigo-600 italic text-3xl md:text-6xl">pour les écoles de demain.</span></h2>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                 <div class="p-8 md:p-10 bg-pastelLavender/20 rounded-2xl md:rounded-[3rem] text-center reveal">
-                    <p class="text-[10px] font-black text-slate-400 uppercase mb-4">Projection Recouvrement</p>
-                    <p class="text-5xl md:text-6xl font-black text-indigo-600 mb-6">+35%</p>
-                    <p class="text-xs md:text-sm font-bold text-slate-600 leading-relaxed">Dès le premier trimestre grâce aux rappels SMS et paiements mobiles.</p>
+                    <p class="text-[10px] font-black text-slate-400 uppercase mb-4 tracking-widest">Revenu par Élève</p>
+                    <p class="text-5xl md:text-6xl font-black text-indigo-600 mb-6">10 000</p>
+                    <p class="text-xs md:text-sm font-bold text-slate-600 leading-relaxed">Positionnement Premium. Valorisation de la qualité pédagogique.</p>
                 </div>
                 <div class="p-8 md:p-10 bg-pastelMint/20 rounded-2xl md:rounded-[3rem] text-center reveal delay-100">
-                    <p class="text-[10px] font-black text-slate-400 uppercase mb-4">Projection Temps</p>
+                    <p class="text-[10px] font-black text-slate-400 uppercase mb-4 tracking-widest">Temps de Gestion</p>
                     <p class="text-5xl md:text-6xl font-black text-emerald-600 mb-6">-90%</p>
-                    <p class="text-xs md:text-sm font-bold text-slate-600 leading-relaxed">Du temps passé par le secrétariat sur la saisie et les calculs de bulletins.</p>
+                    <p class="text-xs md:text-sm font-bold text-slate-600 leading-relaxed">Automatisation des bulletins et des rapports financiers.</p>
                 </div>
                 <div class="p-8 md:p-10 bg-pastelPeach/20 rounded-2xl md:rounded-[3rem] text-center reveal delay-200">
-                    <p class="text-[10px] font-black text-slate-400 uppercase mb-4">Projection Satisfaction</p>
+                    <p class="text-[10px] font-black text-slate-400 uppercase mb-4 tracking-widest">Satisfaction Parentale</p>
                     <p class="text-5xl md:text-6xl font-black text-orange-400 mb-6">4.9/5</p>
-                    <p class="text-xs md:text-sm font-bold text-slate-600 leading-relaxed">Note moyenne de satisfaction des parents après activation de l'espace mobile.</p>
+                    <p class="text-xs md:text-sm font-bold text-slate-600 leading-relaxed">Fidélisation grâce aux tarifs dégressifs "Famille" exclusifs.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ÉDUMAG -->
+    <!-- ÉDUMAG (BLOG INTERACTIF) -->
     <section id="blog" class="py-20 md:py-40 bg-pastelBlue/20">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-end gap-6 md:gap-10 mb-16 md:mb-20 reveal">
                 <div class="max-w-2xl">
                     <span class="text-indigo-600 font-black uppercase text-xs tracking-[0.4em]">ÉduMag Bénin</span>
-                    <h2 class="text-4xl md:text-5xl font-black text-navy mt-4 md:mt-6 tracking-tighter">Histoires de <span class="text-indigo-600">réussite</span></h2>
+                    <h2 class="text-4xl md:text-5xl font-black text-navy mt-6 tracking-tighter">Histoires de <span class="text-indigo-600">réussite</span></h2>
+                </div>
+                <div class="pb-2">
+                    <button class="bg-white px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest text-indigo-600 shadow-sm hover:bg-indigo-600 hover:text-white transition-all">S'abonner au Mag</button>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
-                <article class="card-hover bg-white rounded-2xl md:rounded-[3rem] p-8 md:p-10 reveal cursor-pointer" onclick="openArticle('savior')">
-                    <div class="w-12 h-12 md:w-14 md:h-14 bg-pastelPeach rounded-xl md:rounded-2xl flex items-center justify-center text-xl md:text-2xl mb-6 md:mb-8">🏆</div>
-                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 block">Success Story</span>
-                    <h3 class="text-xl md:text-2xl font-black mb-4 md:mb-6 leading-tight">Comment le Complexe "Le Savoir" a doublé son recouvrement.</h3>
-                    <p class="text-slate-500 text-xs md:text-sm leading-relaxed mb-6 md:mb-8">En intégrant le Mobile Money, l'école a réduit ses impayés de 60% en un trimestre.</p>
-                    <span class="text-indigo-600 font-black text-[11px] md:text-xs uppercase tracking-widest">Lire l'article →</span>
+                <article class="card-hover bg-white rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-10 reveal cursor-pointer" onclick="openArticle('savior')">
+                    <div class="w-14 h-14 bg-pastelPeach rounded-2xl flex items-center justify-center text-2xl mb-8">🏆</div>
+                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 block">Success Story</span>
+                    <h3 class="text-xl md:text-2xl font-black mb-6 leading-tight">Comment le Complexe "Le Savoir" a doublé son recouvrement.</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-8">En intégrant le Mobile Money, l'école a réduit ses impayés de 60% en un trimestre.</p>
+                    <span class="text-indigo-600 font-black text-xs uppercase tracking-widest">Lire l'article →</span>
                 </article>
 
-                <article class="card-hover bg-white rounded-2xl md:rounded-[3rem] p-8 md:p-10 reveal delay-100 cursor-pointer" onclick="openArticle('bulletins')">
-                    <div class="w-12 h-12 md:w-14 md:h-14 bg-pastelMint rounded-xl md:rounded-2xl flex items-center justify-center text-xl md:text-2xl mb-6 md:mb-8">⚡</div>
-                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 block">Technologie</span>
-                    <h3 class="text-xl md:text-2xl font-black mb-4 md:mb-6 leading-tight">La fin des bulletins manuscrits : gain de temps total.</h3>
-                    <p class="text-slate-500 text-xs md:text-sm leading-relaxed mb-6 md:mb-8">Découvrez comment l'automatisation permet aux profs de se concentrer sur l'humain.</p>
-                    <span class="text-indigo-600 font-black text-[11px] md:text-xs uppercase tracking-widest">Lire l'article →</span>
+                <article class="card-hover bg-white rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-10 reveal delay-100 cursor-pointer" onclick="openArticle('bulletins')">
+                    <div class="w-14 h-14 bg-pastelMint rounded-2xl flex items-center justify-center text-2xl mb-8">⚡</div>
+                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 block">Technologie</span>
+                    <h3 class="text-xl md:text-2xl font-black mb-6 leading-tight">La fin des bulletins manuscrits : gain de temps total.</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-8">Découvrez comment l'automatisation permet aux profs de se concentrer sur l'humain.</p>
+                    <span class="text-indigo-600 font-black text-xs uppercase tracking-widest">Lire l'article →</span>
                 </article>
 
-                <article class="card-hover bg-white rounded-2xl md:rounded-[3rem] p-8 md:p-10 reveal delay-200 cursor-pointer" onclick="openArticle('benin')">
-                    <div class="w-12 h-12 md:w-14 md:h-14 bg-pastelRose rounded-xl md:rounded-2xl flex items-center justify-center text-xl md:text-2xl mb-6 md:mb-8">🌍</div>
-                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 block">Souveraineté</span>
+                <article class="card-hover bg-white rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-10 reveal delay-200 cursor-pointer" onclick="openArticle('benin')">
+                    <div class="w-14 h-14 bg-pastelRose rounded-2xl flex items-center justify-center text-2xl mb-8">🌍</div>
+                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 block">Souveraineté</span>
                     <h3 class="text-xl md:text-2xl font-black mb-4 md:mb-6 leading-tight">Pourquoi choisir un logiciel 100% béninois ?</h3>
-                    <p class="text-slate-500 text-xs md:text-sm leading-relaxed mb-6 md:mb-8">Support local, conformité aux normes MEMP et impact national réel.</p>
-                    <span class="text-indigo-600 font-black text-[11px] md:text-xs uppercase tracking-widest">Lire l'article →</span>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-8">Support local, conformité aux normes MEMP et impact national réel.</p>
+                    <span class="text-indigo-600 font-black text-xs uppercase tracking-widest">Lire l'article →</span>
                 </article>
             </div>
         </div>
     </section>
 
     <!-- CALCULATEUR & TARIFS -->
-    <section id="pricing" class="py-20 md:py-40 px-6 bg-white">
+    <section id="pricing" class="py-20 md:py-40 px-6 bg-white relative">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-12 md:mb-20 reveal">
-                <span class="text-indigo-600 font-black uppercase text-[10px] md:text-xs tracking-[0.4em]">Simulation budgétaire</span>
-                <h2 class="text-4xl md:text-7xl font-black text-navy mt-4 md:mt-6 mb-6 md:mb-8 tracking-tighter">Un investissement <br/><span class="text-indigo-600">transparent</span>.</h2>
-                <p class="text-slate-400 max-w-xl mx-auto font-medium text-base md:text-lg leading-relaxed px-4">Ajustez le nombre d'élèves pour découvrir votre forfait mensuel tout inclus.</p>
+            <div class="text-center mb-16 md:mb-24 reveal">
+                <span class="text-indigo-600 font-black uppercase text-xs tracking-[0.4em]">Simulation budgétaire</span>
+                <h2 class="text-5xl md:text-7xl font-black text-navy mt-6 mb-8 tracking-tighter">Votre structure <br/><span class="text-indigo-600 italic">de prix intelligente</span>.</h2>
+                <p class="text-slate-400 max-w-xl mx-auto font-medium text-lg leading-relaxed">Forfaits mensuels basés sur notre modèle d'excellence par élève et par famille.</p>
             </div>
 
-            <div class="glass-ui rounded-3xl md:rounded-[4rem] overflow-hidden reveal">
-                <div class="p-6 md:p-16 bg-white/40">
+            <div class="glass-ui rounded-[3rem] md:rounded-[4rem] overflow-hidden reveal shadow-2xl border border-indigo-50">
+                <div class="p-8 md:p-16 bg-white/40">
                     <div class="mb-12 md:mb-16 max-w-4xl mx-auto text-center">
-                        <h4 class="text-[10px] md:text-[12px] font-black uppercase tracking-[0.4em] text-slate-400 mb-6 md:mb-10">Effectif de votre école</h4>
-                        <div class="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-6 mb-8 md:mb-12">
+                        <h4 class="text-[12px] font-black uppercase tracking-[0.4em] text-slate-400 mb-10">Effectif de votre école</h4>
+                        <div class="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-6 mb-12">
                             <p id="student-count-display" class="text-7xl md:text-[10rem] font-black text-navy leading-none tracking-tighter">150</p>
-                            <span class="text-2xl md:text-4xl font-bold text-slate-300 italic">élèves</span>
+                            <span class="text-4xl font-bold text-slate-300 italic">élèves</span>
                         </div>
-                        <input type="range" min="10" max="2500" step="10" value="150" id="student-slider" class="custom-slider px-4">
+                        <input type="range" min="1" max="1000" step="1" value="150" id="student-slider" class="custom-slider px-4">
+                        <p id="calc-hint" class="mt-6 text-sm font-bold text-indigo-400 uppercase tracking-widest italic h-6"></p>
                     </div>
 
-                    <div class="grid lg:grid-cols-2 gap-8 md:gap-12 items-start">
+                    <div class="grid lg:grid-cols-2 gap-12 items-start">
                         <!-- Tableau -->
-                        <div class="bg-white/60 rounded-3xl md:rounded-[3rem] p-6 md:p-10 border border-white">
-                            <h4 class="font-black text-lg md:text-xl mb-6 md:mb-8 text-navy italic">Détails de l'offre Élite</h4>
+                        <div class="bg-white/60 rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-10 border border-white">
+                            <h4 class="font-black text-xl mb-8 text-navy italic">Barème Tarifaire Premium</h4>
                             <div class="overflow-x-auto">
                                 <table class="w-full text-left border-collapse min-w-[300px]">
                                     <thead>
                                         <tr class="border-b border-slate-100">
-                                            <th class="py-3 md:py-4 text-[10px] md:text-xs font-black uppercase text-slate-400">Services inclus</th>
-                                            <th class="py-3 md:py-4 text-[10px] md:text-xs font-black uppercase text-slate-400 text-right">Statut</th>
+                                            <th class="py-4 text-xs font-black uppercase text-slate-400">Configuration</th>
+                                            <th class="py-4 text-xs font-black uppercase text-slate-400 text-right">Tarif Mensuel</th>
                                         </tr>
                                     </thead>
-                                    <tbody class="text-xs md:text-sm font-bold text-slate-600">
+                                    <tbody class="text-sm font-bold text-slate-600">
                                         <tr class="border-b border-slate-50">
-                                            <td class="py-4 md:py-5">Pédagogie (Notes, Bulletins)</td>
-                                            <td class="py-4 md:py-5 text-right text-emerald-600">Inclus</td>
+                                            <td class="py-5">1 Élève (Standard)</td>
+                                            <td class="py-5 text-right text-navy font-black">10 000 FCFA</td>
                                         </tr>
                                         <tr class="border-b border-slate-50">
-                                            <td class="py-4 md:py-5">Trésorerie & Mobile Money</td>
-                                            <td class="py-4 md:py-5 text-right text-emerald-600">Inclus</td>
+                                            <td class="py-5">Famille de 2 Enfants</td>
+                                            <td class="py-5 text-right text-indigo-600 font-black">18 000 FCFA</td>
                                         </tr>
                                         <tr class="border-b border-slate-50">
-                                            <td class="py-4 md:py-5">Support technique 🇧🇯</td>
-                                            <td class="py-4 md:py-5 text-right text-emerald-600">Inclus</td>
+                                            <td class="py-5">Famille de 3 Enfants</td>
+                                            <td class="py-5 text-right text-indigo-600 font-black">28 000 FCFA</td>
                                         </tr>
                                         <tr>
-                                            <td class="py-4 md:py-5">Cloud & Backups</td>
-                                            <td class="py-4 md:py-5 text-right text-emerald-600">Illimité</td>
+                                            <td class="py-5">Forfait Établissement (> 3 élèves)</td>
+                                            <td class="py-5 text-right text-slate-400 font-black">10 000 FCFA / élève</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -414,13 +493,40 @@
                         </div>
 
                         <!-- Résultat -->
-                        <div class="bg-indigo-600 rounded-3xl md:rounded-[3rem] p-8 md:p-12 text-white flex flex-col justify-center items-center text-center shadow-2xl relative overflow-hidden group">
-                            <div class="absolute -right-20 -bottom-20 w-64 md:w-80 h-64 md:h-80 bg-white/10 rounded-full blur-3xl transition-transform group-hover:scale-110"></div>
-                            <p class="text-[10px] md:text-[11px] opacity-60 font-black uppercase tracking-[0.5em] mb-6 md:mb-8">Investissement Mensuel</p>
-                            <h3 class="text-4xl md:text-7xl font-black mb-8 md:mb-12 tracking-tight"><span id="total-budget">750 000</span> <br/><span class="text-base md:text-xl font-normal opacity-40 uppercase tracking-widest mt-2 md:mt-4 block">FCFA / HT</span></h3>
-                            <button class="w-full bg-white text-indigo-600 py-4 md:py-7 rounded-full font-black text-lg md:text-xl hover:bg-slate-50 transition-all shadow-xl">Activer ÉduGest</button>
+                        <div class="bg-navy rounded-[2.5rem] md:rounded-[3rem] p-10 md:p-14 text-white flex flex-col justify-center items-center text-center shadow-2xl relative overflow-hidden group border-b-[16px] border-indigo-600">
+                            <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-white/5 rounded-full blur-3xl transition-transform group-hover:scale-110"></div>
+                            <p class="text-[11px] opacity-60 font-black uppercase tracking-[0.5em] mb-8 italic">Investissement Total Mensuel</p>
+                            <h3 class="text-5xl md:text-8xl font-black mb-12 tracking-tight"><span id="total-budget">1 500 000</span> <br/><span class="text-xl font-normal opacity-40 uppercase tracking-widest mt-6 block">FCFA / HT</span></h3>
+                            <button class="w-full bg-indigo-600 text-white py-6 md:py-8 rounded-full font-black text-xl hover:bg-indigo-500 transition-all shadow-xl">Activer l'Accès Élite</button>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION PROCESSUS DÉPLOIEMENT -->
+    <section id="process" class="py-20 md:py-40 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-24 reveal">
+                <span class="text-accent font-black uppercase text-xs tracking-[0.6em] mb-4 block">L'Onboarding</span>
+                <h2 class="text-4xl md:text-5xl font-black text-navy tracking-tighter leading-tight">Digitalisé en <span class="text-indigo-600 italic">3 étapes clés.</span></h2>
+            </div>
+            <div class="grid lg:grid-cols-3 gap-16">
+                <div class="reveal">
+                    <div class="w-20 h-20 bg-pastelBlue rounded-3xl flex items-center justify-center text-3xl font-black text-indigo-600 mb-10 shadow-inner">01</div>
+                    <h4 class="text-2xl font-black mb-6">Audit & Import</h4>
+                    <p class="text-slate-500 font-medium">Analyse de vos structures et import sécurisé de vos bases de données élèves en 48h.</p>
+                </div>
+                <div class="reveal delay-100">
+                    <div class="w-20 h-20 bg-pastelLavender rounded-3xl flex items-center justify-center text-3xl font-black text-indigo-600 mb-10 shadow-inner">02</div>
+                    <h4 class="text-2xl font-black mb-6">Immersion Équipe</h4>
+                    <p class="text-slate-500 font-medium">Formation intensive de vos secrétaires et enseignants sur place pour une maîtrise totale.</p>
+                </div>
+                <div class="reveal delay-200">
+                    <div class="w-20 h-20 bg-indigo-600 rounded-3xl flex items-center justify-center text-3xl font-black text-white mb-10 shadow-xl">03</div>
+                    <h4 class="text-2xl font-black mb-6">Lancement Live</h4>
+                    <p class="text-slate-500 font-medium">Activation du portail parent et du mode Mobile Money. Votre école entre dans l'élite.</p>
                 </div>
             </div>
         </div>
@@ -429,45 +535,31 @@
     <!-- SECTION FAQ -->
     <section id="faq" class="py-20 md:py-40 bg-slate-50">
         <div class="max-w-4xl mx-auto px-6">
-            <div class="text-center mb-16 md:mb-24 reveal">
-                <span class="text-indigo-600 font-black uppercase text-xs tracking-[0.4em]">Aide & Support</span>
-                <h2 class="text-4xl md:text-5xl font-black text-navy mt-4 md:mt-6 tracking-tighter">On répond à <span class="text-indigo-600 italic">tout.</span></h2>
+            <div class="text-center mb-20 reveal">
+                <span class="text-indigo-600 font-black uppercase text-xs tracking-[0.4em]">Soutien Client</span>
+                <h2 class="text-4xl md:text-5xl font-black text-navy mt-6 tracking-tighter">On répond à <span class="text-indigo-600 italic">tout.</span></h2>
             </div>
 
-            <div class="space-y-4 md:space-y-6">
-                <!-- FAQ Item 1 -->
-                <div class="accordion-item reveal glass-ui rounded-2xl md:rounded-[2.5rem] overflow-hidden">
-                    <button class="w-full p-6 md:p-10 flex justify-between items-center text-left" onclick="toggleAccordion(this)">
-                        <span class="text-base md:text-xl font-black text-navy">Sécurité des données ?</span>
-                        <div class="accordion-icon w-8 h-8 md:w-10 md:h-10 rounded-full bg-slate-100 flex items-center justify-center text-xl md:text-2xl transition-transform">+</div>
+            <div class="space-y-6">
+                <div class="accordion-item reveal glass-ui rounded-[2.5rem] overflow-hidden">
+                    <button class="w-full p-8 md:p-10 flex justify-between items-center text-left" onclick="toggleAccordion(this)">
+                        <span class="text-lg md:text-xl font-black text-navy">Pourquoi ce tarif Premium ?</span>
+                        <div class="accordion-icon w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-2xl transition-transform">+</div>
                     </button>
                     <div class="accordion-content">
-                        <div class="px-6 md:px-10 pb-6 md:pb-10 text-sm md:text-base text-slate-500 font-medium">
-                            Vos données sont chiffrées et hébergées localement au Bénin, conformément à la loi sur le numérique pour assurer une souveraineté totale.
+                        <div class="px-10 pb-10 text-slate-500 font-medium">
+                            ÉduGest offre une infrastructure complète incluant l'hébergement sécurisé au Bénin, le support physique à Cotonou et une conformité totale avec le MEMP. C'est l'assurance d'une tranquillité administrative absolue.
                         </div>
                     </div>
                 </div>
-                <!-- FAQ Item 2 -->
-                <div class="accordion-item reveal glass-ui rounded-2xl md:rounded-[2.5rem] overflow-hidden">
-                    <button class="w-full p-6 md:p-10 flex justify-between items-center text-left" onclick="toggleAccordion(this)">
-                        <span class="text-base md:text-xl font-black text-navy">Paiements Mobile Money ?</span>
-                        <div class="accordion-icon w-8 h-8 md:w-10 md:h-10 rounded-full bg-slate-100 flex items-center justify-center text-xl md:text-2xl transition-transform">+</div>
+                <div class="accordion-item reveal glass-ui rounded-[2.5rem] overflow-hidden">
+                    <button class="w-full p-8 md:p-10 flex justify-between items-center text-left" onclick="toggleAccordion(this)">
+                        <span class="text-lg md:text-xl font-black text-navy">Comment fonctionne le Pack Famille ?</span>
+                        <div class="accordion-icon w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-2xl transition-transform">+</div>
                     </button>
                     <div class="accordion-content">
-                        <div class="px-6 md:px-10 pb-6 md:pb-10 text-sm md:text-base text-slate-500 font-medium">
-                            L'intégration est directe avec MTN et Moov. Les parents paient en 3 clics et le système valide l'inscription automatiquement.
-                        </div>
-                    </div>
-                </div>
-                <!-- FAQ Item 3 -->
-                <div class="accordion-item reveal glass-ui rounded-2xl md:rounded-[2.5rem] overflow-hidden">
-                    <button class="w-full p-6 md:p-10 flex justify-between items-center text-left" onclick="toggleAccordion(this)">
-                        <span class="text-base md:text-xl font-black text-navy">Formation de l'équipe ?</span>
-                        <div class="accordion-icon w-8 h-8 md:w-10 md:h-10 rounded-full bg-slate-100 flex items-center justify-center text-xl md:text-2xl transition-transform">+</div>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="px-6 md:px-10 pb-6 md:pb-10 text-sm md:text-base text-slate-500 font-medium">
-                            Nous organisons des formations immersives à Cotonou ou sur place dans votre école pour que vos équipes soient opérationnelles en 48h.
+                        <div class="px-10 pb-10 text-slate-500 font-medium">
+                            Notre algorithme identifie automatiquement les fratries. Pour les familles, nous appliquons un tarif forfaitaire avantageux (18k pour 2, 28k pour 3) pour favoriser la fidélisation des grandes fratries dans votre école.
                         </div>
                     </div>
                 </div>
@@ -476,37 +568,42 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-white py-16 md:py-32 px-6 border-t border-slate-100">
+    <footer class="bg-white py-20 md:py-32 px-6 border-t border-slate-100">
         <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-20 mb-16 md:mb-28">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 md:gap-20 mb-20 md:mb-28">
                 <div class="md:col-span-2">
-                    <div class="flex items-center gap-3 mb-8">
-                        <div class="w-10 h-10 md:w-12 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center text-xl">🇧🇯</div>
-                        <span class="text-2xl md:text-3xl font-black tracking-tight text-navy">Édu<span class="text-accent">Gest</span></span>
+                    <div class="flex items-center gap-3 mb-10">
+                        <div class="w-12 h-12 bg-navy rounded-2xl flex items-center justify-center text-2xl font-black text-white shadow-lg">B</div>
+                        <span class="text-3xl font-black tracking-tight text-navy uppercase">ÉduGest<span class="text-accent">.bj</span></span>
                     </div>
-                    <p class="text-slate-400 max-w-sm leading-relaxed text-lg md:text-xl font-body italic">"Un partenaire pour bâtir l'éducation de demain au Bénin."</p>
+                    <p class="text-slate-400 max-w-sm leading-relaxed text-xl font-body italic mb-10">"Bâtir l'éducation de prestige au Bénin, un établissement à la fois."</p>
+                    <div class="flex gap-6">
+                        <div class="w-12 h-12 rounded-full bg-slate-50 flex items-center justify-center text-navy hover:bg-accent hover:text-white transition-all shadow-sm font-black cursor-pointer">FB</div>
+                        <div class="w-12 h-12 rounded-full bg-slate-50 flex items-center justify-center text-navy hover:bg-accent hover:text-white transition-all shadow-sm font-black cursor-pointer">IN</div>
+                    </div>
                 </div>
                 <div>
-                    <h5 class="font-black text-[10px] md:text-[11px] uppercase tracking-[0.3em] mb-6 md:mb-10 text-slate-300">Exploration</h5>
-                    <ul class="space-y-4 md:space-y-6 text-sm font-bold text-slate-500">
+                    <h5 class="font-black text-[11px] uppercase tracking-[0.4em] mb-10 text-slate-300">Exploration</h5>
+                    <ul class="space-y-6 text-sm font-bold text-slate-500">
                         <li><a href="#vision" class="hover:text-accent transition-colors">Vision</a></li>
-                        <li><a href="#product" class="hover:text-accent transition-colors">Produit</a></li>
-                        <li><a href="#pricing" class="hover:text-accent transition-colors">Tarifs</a></li>
+                        <li><a href="#product" class="hover:text-accent transition-colors">La Solution</a></li>
+                        <li><a href="#pricing" class="hover:text-accent transition-colors">Tarifs Élite</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h5 class="font-black text-[10px] md:text-[11px] uppercase tracking-[0.3em] mb-6 md:mb-10 text-slate-300">Aide</h5>
-                    <ul class="space-y-4 md:space-y-6 text-sm font-bold text-slate-500">
+                    <h5 class="font-black text-[11px] uppercase tracking-[0.4em] mb-10 text-slate-300">Aide</h5>
+                    <ul class="space-y-6 text-sm font-bold text-slate-500">
                         <li><a href="#faq" class="hover:text-accent transition-colors">FAQ</a></li>
-                        <li><a href="#" class="hover:text-accent transition-colors">Support</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Support Local</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Contact</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="pt-10 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-6 md:gap-10">
-                <p class="text-[10px] md:text-[11px] text-slate-400 font-black uppercase tracking-widest text-center">© 2026 ÉduGest Bénin. Tous droits réservés.</p>
-                <div class="flex gap-6 md:gap-10 text-[10px] md:text-[11px] font-black text-slate-400 uppercase tracking-widest">
-                    <a href="#">Confidentialité</a>
-                    <a href="#">Légal</a>
+            <div class="pt-10 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-[11px] text-slate-400 font-black uppercase tracking-widest text-center">© 2026 ÉduGest Bénin. Logiciel Souverain Homologué.</p>
+                <div class="flex gap-10 text-[11px] font-black text-slate-400 uppercase tracking-widest">
+                    <a href="#" class="hover:text-navy">Confidentialité</a>
+                    <a href="#" class="hover:text-navy">Légal 🇧🇯</a>
                 </div>
             </div>
         </div>
@@ -520,44 +617,61 @@
             document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : 'auto';
         }
 
+        // === ACCORDION FAQ ===
+        function toggleAccordion(btn) {
+            const item = btn.closest('.accordion-item');
+            const isActive = item.classList.contains('active');
+            document.querySelectorAll('.accordion-item').forEach(el => el.classList.remove('active'));
+            if (!isActive) item.classList.add('active');
+        }
+
         // === ARTICLES DATA ===
         const articles = {
             savior: {
                 title: 'Doubler son recouvrement avec le Mobile Money',
                 content: `
-                    <h2 class="text-3xl md:text-4xl font-black mb-8 leading-tight">L'impact de la digitalisation sur les finances scolaires.</h2>
-                    <div class="space-y-6 text-base md:text-lg text-slate-600 font-body">
-                        <p>Le Complexe Scolaire "Le Savoir" a réduit ses impayés de 60% en intégrant le paiement via MTN et Moov.</p>
-                        <ul class="list-disc pl-6 space-y-4 font-bold text-navy">
+                    <h2 class="text-3xl md:text-5xl font-black mb-8 leading-tight">L'impact de la digitalisation sur les finances scolaires.</h2>
+                    <div class="space-y-6 text-lg text-slate-600 font-body">
+                        <p>Le Complexe Scolaire "Le Savoir" a réduit ses impayés de 60% en intégrant le paiement via MTN et Moov. Plus besoin de reçus physiques fragiles.</p>
+                        <ul class="list-disc pl-8 space-y-4 font-bold text-navy">
                             <li>Trésorerie fluide en temps réel</li>
-                            <li>Zéro erreur de saisie</li>
-                            <li>Relances SMS automatiques</li>
+                            <li>Zéro erreur de saisie ou de perte de reçu</li>
+                            <li>Relances SMS automatiques intelligentes</li>
                         </ul>
+                        <p class="mt-8">Cette transition a permis à l'école de réinvestir ses fonds dans de nouvelles infrastructures pédagogiques en moins de 6 mois.</p>
                     </div>`
             },
             bulletins: {
                 title: 'La fin de la corvée des bulletins',
                 content: `
-                    <h2 class="text-3xl md:text-4xl font-black mb-8 leading-tight">Gain de temps massif pour vos enseignants.</h2>
-                    <div class="space-y-6 text-base md:text-lg text-slate-600 font-body">
-                        <p>Fini les calculs de moyennes qui durent des nuits entières. Avec ÉduGest, le système s'occupe de tout d'un clic.</p>
+                    <h2 class="text-3xl md:text-5xl font-black mb-8 leading-tight">Gain de temps massif pour vos enseignants.</h2>
+                    <div class="space-y-6 text-lg text-slate-600 font-body">
+                        <p>Fini les calculs de moyennes qui durent des nuits entières. Avec ÉduGest, le système s'occupe de tout d'un simple clic.</p>
+                        <p>Les enseignants saisissent les notes sur mobile, les coefficients s'appliquent automatiquement, et les rangs sont générés instantanément, conformes aux normes du MEMP.</p>
                     </div>`
             },
             benin: {
                 title: 'Pourquoi choisir le local ?',
                 content: `
-                    <h2 class="text-3xl md:text-4xl font-black mb-8 leading-tight">Un outil fait pour et par des Béninois.</h2>
-                    <div class="space-y-6 text-base md:text-lg text-slate-600 font-body">
-                        <p>Nous comprenons les normes du MEMP et les réalités du terrain comme personne d'autre. Vos données restent au pays.</p>
+                    <h2 class="text-3xl md:text-5xl font-black mb-8 leading-tight">Un outil fait pour et par des Béninois.</h2>
+                    <div class="space-y-6 text-lg text-slate-600 font-body">
+                        <p>Nous comprenons les normes du MEMP et les réalités du terrain comme personne d'autre. Vos données restent sur notre territoire, hébergées en local pour une souveraineté totale.</p>
+                        <p>En cas de pépin, notre équipe technique intervient physiquement sous 24h, ce qu'aucun logiciel étranger ne peut offrir.</p>
                     </div>`
             }
         };
 
-        // === MODAL FUNCTIONS ===
         function openArticle(id) {
             const article = articles[id];
             if (!article) return;
-            document.getElementById('modal-content').innerHTML = article.content;
+            document.getElementById('modal-content').innerHTML = `
+                <div class="mb-10 text-5xl">📖</div>
+                <h4 class="text-accent font-black uppercase text-xs tracking-[0.4em] mb-4">ÉduMag • Success Story</h4>
+                ${article.content}
+                <div class="mt-12 pt-10 border-t border-slate-100">
+                    <button class="bg-accent text-white px-10 py-4 rounded-full font-black shadow-lg" onclick="closeArticle()">Fermer la lecture</button>
+                </div>
+            `;
             document.getElementById('article-modal').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -567,25 +681,36 @@
             document.body.style.overflow = 'auto';
         }
 
-        // === ACCORDION FAQ ===
-        function toggleAccordion(btn) {
-            const item = btn.closest('.accordion-item');
-            const isActive = item.classList.contains('active');
-            document.querySelectorAll('.accordion-item').forEach(el => el.classList.remove('active'));
-            if (!isActive) item.classList.add('active');
-        }
-
-        // === CALCULATEUR DYNAMIQUE ===
+        // === CALCULATEUR DYNAMIQUE AVEC LOGIQUE DE PACK FAMILLE ===
         const slider = document.getElementById('student-slider');
         const countDisplay = document.getElementById('student-count-display');
         const budgetDisplay = document.getElementById('total-budget');
-        const PRICE_PER_STUDENT = 5000;
+        const hintDisplay = document.getElementById('calc-hint');
 
         function updatePricing() {
             const val = parseInt(slider.value);
             countDisplay.textContent = val;
-            const total = val * PRICE_PER_STUDENT;
+            
+            let total = 0;
+            let hint = "";
+
+            if (val === 1) {
+                total = 10000;
+                hint = "Tarif Standard Individuel";
+            } else if (val === 2) {
+                total = 18000;
+                hint = "Pack Famille Appliqué (Économisez 2 000 FCFA)";
+            } else if (val === 3) {
+                total = 28000;
+                hint = "Pack Famille Appliqué (Économisez 2 000 FCFA)";
+            } else {
+                // Pour une école entière, on applique le tarif 10k par élève
+                total = val * 10000;
+                hint = "Forfait Établissement Premium (10 000 FCFA / élève)";
+            }
+
             budgetDisplay.textContent = total.toLocaleString('fr-FR');
+            hintDisplay.textContent = hint;
         }
 
         slider.addEventListener('input', updatePricing);
