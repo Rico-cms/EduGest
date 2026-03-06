@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ÉduGest Bénin | L'Excellence Scolaire au Format Numérique</title>
+    <title>ÉduGest Bénin | L'Excellence Scolaire & Souveraineté Numérique</title>
     
     <!-- Polices -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,22 +23,22 @@
                         pastelPeach: '#FFF7ED',
                         pastelRose: '#FFF1F2',
                         pastelLavender: '#F5F3FF',
-                        navy: '#1E293B', // Texte profond pour lisibilité
-                        accent: '#6366F1', // Indigo doux pour les actions
-                        success: '#10B981',
-                        warning: '#F59E0B',
+                        navy: '#0F172A',
+                        accent: '#6366F1',
+                        success: '#059669',
+                        warning: '#D97706',
                     },
                     fontFamily: {
                         head: ['Fraunces', 'serif'],
                         body: ['DM Sans', 'sans-serif'],
                     },
                     animation: {
-                        'slow-float': 'float 8s ease-in-out infinite',
+                        'slow-float': 'float 10s ease-in-out infinite',
                     },
                     keyframes: {
                         float: {
                             '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-15px)' },
+                            '50%': { transform: 'translateY(-20px)' },
                         }
                     }
                 }
@@ -47,19 +47,19 @@
     </script>
 
     <style>
-        body { font-family: 'DM Sans', sans-serif; background-color: #F8FAFC; color: #1E293B; }
+        body { font-family: 'DM Sans', sans-serif; background-color: #F8FAFC; color: #1E293B; overflow-x: hidden; }
         h1, h2, h3, h4 { font-family: 'Fraunces', serif; color: #0F172A; }
 
         .glass-ui {
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 20px 60px -15px rgba(15, 23, 42, 0.05);
         }
 
         nav.scrolled {
             background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(30px);
             padding-top: 1rem;
             padding-bottom: 1rem;
             border-bottom: 1px solid rgba(0,0,0,0.05);
@@ -86,14 +86,16 @@
         .custom-slider::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             background: #6366F1;
             cursor: pointer;
             border: 6px solid white;
-            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+            transition: transform 0.2s;
         }
+        .custom-slider::-webkit-slider-thumb:hover { transform: scale(1.15); }
 
         .gradient-text {
             background: linear-gradient(135deg, #4338CA, #6366F1, #818CF8);
@@ -102,19 +104,44 @@
         }
 
         .card-hover {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .card-hover:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.08);
+            transform: translateY(-12px);
+            box-shadow: 0 40px 80px -20px rgba(99, 102, 241, 0.15);
+            border-color: #6366F1;
         }
-        
-        .bg-soft-gradient {
-            background: linear-gradient(180deg, #F8FAFC 0%, #F0F9FF 100%);
+
+        /* Modal Styles */
+        #article-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(8px);
         }
+        #article-modal.active { display: flex; }
+
+        /* Accordion */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+        .accordion-item.active .accordion-content { max-height: 300px; }
+        .accordion-item.active .accordion-icon { transform: rotate(45deg); }
     </style>
 </head>
 <body class="selection:bg-accent selection:text-white">
+
+    <!-- MODAL LECTURE ARTICLE -->
+    <div id="article-modal" class="items-center justify-center p-6" onclick="closeArticle()">
+        <div class="bg-white w-full max-w-4xl max-h-[90vh] rounded-[3rem] p-10 md:p-16 overflow-y-auto relative shadow-2xl" onclick="event.stopPropagation()">
+            <button class="absolute top-8 right-8 w-12 h-12 rounded-full bg-slate-50 flex items-center justify-center text-2xl font-bold hover:bg-slate-100 transition-colors" onclick="closeArticle()">✕</button>
+            <div id="modal-content"></div>
+        </div>
+    </div>
 
     <!-- NAVIGATION -->
     <nav id="navbar" class="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-6 md:px-16 py-8 transition-all duration-500">
@@ -126,22 +153,21 @@
             <a href="#vision" class="text-sm font-bold text-slate-500 hover:text-accent transition-colors">Vision</a>
             <a href="#features" class="text-sm font-bold text-slate-500 hover:text-accent transition-colors">Produit</a>
             <a href="#blog" class="text-sm font-bold text-slate-500 hover:text-accent transition-colors">ÉduMag</a>
-            <a href="#pricing" class="text-sm font-bold text-slate-500 hover:text-accent transition-colors">Calculateur</a>
+            <a href="#pricing" class="text-sm font-bold text-slate-500 hover:text-accent transition-colors">Tarifs</a>
             <button class="bg-accent text-white px-8 py-3 rounded-full text-sm font-black shadow-lg shadow-indigo-200 hover:scale-105 transition-all">Essai gratuit</button>
         </div>
-        <div class="lg:hidden text-navy text-3xl">☰</div>
+        <div class="lg:hidden text-navy text-3xl cursor-pointer">☰</div>
     </nav>
 
     <!-- HERO SECTION -->
-    <header class="relative pt-48 pb-40 px-6 bg-soft-gradient overflow-hidden">
-        {/* Cercles Pastel Décoratifs */}
+    <header class="relative pt-48 pb-40 px-6 bg-gradient-to-b from-white to-slate-50 overflow-hidden">
         <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-pastelBlue rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2 opacity-60"></div>
         <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-pastelRose rounded-full blur-[100px] -z-10 -translate-x-1/2 translate-y-1/2 opacity-40"></div>
         
         <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-24 items-center">
             <div class="reveal">
                 <span class="inline-flex items-center gap-2 bg-white px-5 py-2 rounded-full text-xs font-black tracking-widest uppercase mb-8 shadow-sm text-accent border border-indigo-50">
-                    Propulsons le Bénin Digital 🇧🇯
+                    Souveraineté Numérique Béninoise 🇧🇯
                 </span>
                 <h1 class="text-6xl md:text-[5.5rem] font-black leading-[1] mb-10 tracking-tighter">
                     L'Éducation <br/>
@@ -166,28 +192,28 @@
                             <div class="w-12 h-12 bg-pastelLavender rounded-2xl flex items-center justify-center text-2xl shadow-inner">💎</div>
                             <h3 class="font-black text-2xl tracking-tight">Vue Élite</h3>
                         </div>
-                        <div class="bg-emerald-50 text-emerald-600 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest border border-emerald-100">Optimisé</div>
+                        <div class="bg-emerald-50 text-emerald-600 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest border border-emerald-100">Certifié</div>
                     </div>
                     
                     <div class="space-y-10">
                         <div class="grid grid-cols-2 gap-8">
                             <div class="p-6 bg-white/60 rounded-[2rem] border border-white">
                                 <p class="text-[10px] text-slate-400 uppercase font-black mb-2 tracking-widest">Réussite Examens</p>
-                                <p class="text-4xl font-black text-indigo-600">96.4%</p>
+                                <p class="text-4xl font-black text-indigo-600">97.2%</p>
                             </div>
                             <div class="p-6 bg-indigo-600 text-white rounded-[2rem] shadow-xl">
-                                <p class="text-[10px] text-indigo-200 uppercase font-black mb-2 tracking-widest">Trésorerie SMS</p>
+                                <p class="text-[10px] text-indigo-200 uppercase font-black mb-2 tracking-widest">Recouvrement SMS</p>
                                 <p class="text-3xl font-black">+145%</p>
-                                <p class="text-[10px] mt-1 opacity-60">Recouvrement</p>
+                                <p class="text-[10px] mt-1 opacity-60 italic">Flux Mobile</p>
                             </div>
                         </div>
                         
-                        <div class="flex items-center justify-between p-6 bg-pastelMint/40 rounded-3xl border border-emerald-50">
+                        <div class="flex items-center justify-between p-6 bg-emerald-50/40 rounded-3xl border border-emerald-50">
                             <div class="flex gap-4 items-center">
                                 <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm">✉️</div>
                                 <div>
-                                    <p class="text-sm font-black">Bulletins Prêts</p>
-                                    <p class="text-[10px] text-slate-400">Diffusion Mobile activée</p>
+                                    <p class="text-sm font-black">Bulletins Sécurisés</p>
+                                    <p class="text-[10px] text-slate-400">Prêt pour diffusion</p>
                                 </div>
                             </div>
                             <div class="h-10 w-24 bg-emerald-100 rounded-full overflow-hidden">
@@ -200,16 +226,16 @@
         </div>
     </header>
 
-    <!-- AVANT / APRÈS (LA MÉTAMORPHOSE) -->
+    <!-- AVANT / APRÈS -->
     <section id="vision" class="py-32 px-6 bg-white">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-28 reveal">
-                <span class="text-accent font-black uppercase text-xs tracking-[0.4em]">Le Rêve vs La Réalité</span>
+                <span class="text-accent font-black uppercase text-xs tracking-[0.4em]">La Métamorphose</span>
                 <h2 class="text-5xl md:text-6xl font-black text-navy mt-6 leading-tight tracking-tighter">Votre école mérite <br/> <span class="text-indigo-600 italic">la paix de l'esprit</span></h2>
             </div>
 
             <div class="grid lg:grid-cols-2 gap-16 items-stretch">
-                <div class="p-14 bg-pastelLavender/30 rounded-[4rem] border border-pastelLavender/50 reveal">
+                <div class="p-14 bg-pastelLavender/30 rounded-[4rem] border border-pastelLavender/50 reveal card-hover">
                     <h3 class="text-2xl font-black mb-10 text-slate-400 flex items-center gap-4">
                         <span class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-sm">🌑</span>
                         Hier
@@ -226,7 +252,7 @@
                     </ul>
                 </div>
                 
-                <div class="p-14 bg-white rounded-[4rem] shadow-2xl border-2 border-indigo-50 relative overflow-hidden reveal">
+                <div class="p-14 bg-white rounded-[4rem] shadow-2xl border-2 border-indigo-50 relative overflow-hidden reveal card-hover">
                     <div class="absolute -right-10 -top-10 w-40 h-40 bg-pastelMint rounded-full blur-[60px] opacity-60"></div>
                     <h3 class="text-2xl font-black mb-10 text-indigo-600 flex items-center gap-4">
                         <span class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center text-sm">☀️</span>
@@ -247,7 +273,7 @@
         </div>
     </section>
 
-    <!-- NEWSLETTER SECTION (EDUMAG) -->
+    <!-- ÉDUMAG (BLOG) -->
     <section id="blog" class="py-40 bg-pastelBlue/20">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-end gap-10 mb-20 reveal">
@@ -255,81 +281,144 @@
                     <span class="text-indigo-600 font-black uppercase text-xs tracking-[0.4em]">ÉduMag Bénin</span>
                     <h2 class="text-5xl font-black text-navy mt-6 tracking-tighter">Histoires de <span class="text-indigo-600">réussite</span></h2>
                 </div>
-                <div class="pb-2">
-                    <button class="flex items-center gap-3 text-indigo-600 font-black text-sm uppercase tracking-widest group">
-                        S'abonner à la Newsletter 
-                        <span class="w-10 h-10 rounded-full bg-white flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-all shadow-sm">→</span>
-                    </button>
-                </div>
             </div>
 
             <div class="grid md:grid-cols-3 gap-10">
-                <!-- Article 1 -->
-                <article class="card-hover bg-white rounded-[3rem] p-10 reveal">
+                <article class="card-hover bg-white rounded-[3rem] p-10 reveal cursor-pointer" onclick="openArticle('savior')">
                     <div class="w-14 h-14 bg-pastelPeach rounded-2xl flex items-center justify-center text-2xl mb-8">🏆</div>
-                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 block">Success Story • 5 min</span>
+                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 block">Success Story</span>
                     <h3 class="text-2xl font-black mb-6 leading-tight">Comment le Complexe "Le Savoir" a doublé son recouvrement.</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed mb-8">En intégrant le Mobile Money, l'école a réduit ses impayés de 60% en un seul trimestre.</p>
-                    <a href="#" class="text-indigo-600 font-black text-xs uppercase tracking-widest flex items-center gap-2 group">
-                        Lire l'article <span class="group-hover:translate-x-1 transition-transform">→</span>
-                    </a>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-8">En intégrant le Mobile Money, l'école a réduit ses impayés de 60% en un trimestre.</p>
+                    <span class="text-indigo-600 font-black text-xs uppercase tracking-widest">Lire l'article →</span>
                 </article>
 
-                <!-- Article 2 -->
-                <article class="card-hover bg-white rounded-[3rem] p-10 reveal delay-100">
+                <article class="card-hover bg-white rounded-[3rem] p-10 reveal delay-100 cursor-pointer" onclick="openArticle('bulletins')">
                     <div class="w-14 h-14 bg-pastelMint rounded-2xl flex items-center justify-center text-2xl mb-8">⚡</div>
-                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 block">Technologie • 4 min</span>
-                    <h3 class="text-2xl font-black mb-6 leading-tight">La fin des bulletins manuscrits : gain de temps ou gain de vie ?</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed mb-8">Découvrez comment automatiser vos notes permet à vos profs de se concentrer sur l'humain.</p>
-                    <a href="#" class="text-indigo-600 font-black text-xs uppercase tracking-widest flex items-center gap-2 group">
-                        Lire l'article <span class="group-hover:translate-x-1 transition-transform">→</span>
-                    </a>
+                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 block">Technologie</span>
+                    <h3 class="text-2xl font-black mb-6 leading-tight">La fin des bulletins manuscrits : gain de temps total.</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-8">Découvrez comment l'automatisation permet aux profs de se concentrer sur l'humain.</p>
+                    <span class="text-indigo-600 font-black text-xs uppercase tracking-widest">Lire l'article →</span>
                 </article>
 
-                <!-- Article 3 -->
-                <article class="card-hover bg-white rounded-[3rem] p-10 reveal delay-200">
+                <article class="card-hover bg-white rounded-[3rem] p-10 reveal delay-200 cursor-pointer" onclick="openArticle('benin')">
                     <div class="w-14 h-14 bg-pastelRose rounded-2xl flex items-center justify-center text-2xl mb-8">🌍</div>
-                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 block">Souveraineté • 6 min</span>
+                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 block">Souveraineté</span>
                     <h3 class="text-2xl font-black mb-6 leading-tight">Pourquoi choisir un logiciel 100% béninois ?</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed mb-8">Support local, conformité aux normes MEMP et impact sur l'économie numérique nationale.</p>
-                    <a href="#" class="text-indigo-600 font-black text-xs uppercase tracking-widest flex items-center gap-2 group">
-                        Lire l'article <span class="group-hover:translate-x-1 transition-transform">→</span>
-                    </a>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-8">Support local, conformité aux normes MEMP et impact national réel.</p>
+                    <span class="text-indigo-600 font-black text-xs uppercase tracking-widest">Lire l'article →</span>
                 </article>
             </div>
         </div>
     </section>
 
-    <!-- CALCULATEUR PREMIUM (HARMONISÉ PASTEL) -->
+    <!-- CALCULATEUR & TABLEAU DE PRIX -->
     <section id="pricing" class="py-40 px-6 bg-white">
-        <div class="max-w-5xl mx-auto">
-            <div class="text-center mb-24 reveal">
-                <h2 class="text-5xl md:text-6xl font-black text-navy mb-8 tracking-tighter">Un prix <span class="text-indigo-600">juste</span>, sans surprises.</h2>
-                <p class="text-slate-400 max-w-lg mx-auto font-medium">Parce que chaque école est unique, notre tarif s'adapte à votre taille réelle.</p>
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20 reveal">
+                <span class="text-indigo-600 font-black uppercase text-xs tracking-[0.4em]">Simulation budgétaire</span>
+                <h2 class="text-5xl md:text-7xl font-black text-navy mt-6 mb-8 tracking-tighter">Un investissement <br/><span class="text-indigo-600">transparent</span>.</h2>
+                <p class="text-slate-400 max-w-xl mx-auto font-medium text-lg leading-relaxed">Ajustez le nombre d'élèves pour découvrir votre forfait mensuel tout inclus.</p>
             </div>
 
-            <div class="glass-ui rounded-[4rem] p-12 md:p-20 border-b-8 border-indigo-600 reveal">
-                <div class="grid lg:grid-cols-5 gap-20 items-center">
-                    <div class="lg:col-span-3">
-                        <div class="mb-12">
-                            <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-300 mb-6">Effectif scolaire</h4>
-                            <div class="flex items-baseline gap-4 mb-8">
-                                <p id="student-count-display" class="text-8xl font-black text-navy">200</p>
-                                <span class="text-xl font-bold text-slate-300">élèves</span>
-                            </div>
-                            <input type="range" min="10" max="1500" step="10" value="200" id="student-slider" class="custom-slider">
+            <div class="glass-ui rounded-[4rem] overflow-hidden reveal">
+                <div class="p-12 md:p-16 bg-white/40">
+                    <div class="mb-16 max-w-4xl mx-auto text-center">
+                        <h4 class="text-[12px] font-black uppercase tracking-[0.4em] text-slate-400 mb-10">Effectif de votre école</h4>
+                        <div class="flex items-baseline justify-center gap-6 mb-12">
+                            <p id="student-count-display" class="text-[10rem] font-black text-navy leading-none tracking-tighter">150</p>
+                            <span class="text-4xl font-bold text-slate-300 italic">élèves</span>
                         </div>
-                        <div class="grid grid-cols-2 gap-y-6">
-                            <div class="flex items-center gap-4 text-sm font-bold text-slate-500"><span class="w-5 h-5 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center text-[10px]">✓</span> Cloud illimité</div>
-                            <div class="flex items-center gap-4 text-sm font-bold text-slate-500"><span class="w-5 h-5 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center text-[10px]">✓</span> Support Prioritaire</div>
-                            <div class="flex items-center gap-4 text-sm font-bold text-slate-500"><span class="w-5 h-5 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center text-[10px]">✓</span> Paiement Mobile</div>
+                        <input type="range" min="10" max="2500" step="10" value="150" id="student-slider" class="custom-slider">
+                    </div>
+
+                    <div class="grid lg:grid-cols-2 gap-12 items-start">
+                        <!-- Tableau des inclusions -->
+                        <div class="bg-white/60 rounded-[3rem] p-10 border border-white">
+                            <h4 class="font-black text-xl mb-8 text-navy italic">Détails de l'offre Élite</h4>
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="border-b border-slate-100">
+                                        <th class="py-4 text-xs font-black uppercase text-slate-400">Services inclus</th>
+                                        <th class="py-4 text-xs font-black uppercase text-slate-400 text-right">Statut</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-sm font-bold text-slate-600">
+                                    <tr class="border-b border-slate-50">
+                                        <td class="py-5">Modules Pédagogiques (Notes, Bulletins)</td>
+                                        <td class="py-5 text-right text-emerald-600">Inclus</td>
+                                    </tr>
+                                    <tr class="border-b border-slate-50">
+                                        <td class="py-5">Module Trésorerie & Mobile Money</td>
+                                        <td class="py-5 text-right text-emerald-600">Inclus</td>
+                                    </tr>
+                                    <tr class="border-b border-slate-50">
+                                        <td class="py-5">Support technique Prioritaire 🇧🇯</td>
+                                        <td class="py-5 text-right text-emerald-600">Inclus</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-5">Cloud sécurisé & Backups quotidiens</td>
+                                        <td class="py-5 text-right text-emerald-600">Illimité</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Bloc Résultat -->
+                        <div class="bg-indigo-600 rounded-[3rem] p-12 text-white flex flex-col justify-center items-center text-center shadow-2xl relative overflow-hidden group">
+                            <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-white/10 rounded-full blur-3xl transition-transform group-hover:scale-110"></div>
+                            <p class="text-[11px] opacity-60 font-black uppercase tracking-[0.5em] mb-8">Investissement Mensuel</p>
+                            <h3 class="text-7xl font-black mb-12"><span id="total-budget">750 000</span> <br/><span class="text-xl font-normal opacity-40 uppercase tracking-widest mt-4 block">FCFA / HT</span></h3>
+                            <button class="w-full bg-white text-indigo-600 py-7 rounded-full font-black text-xl hover:bg-slate-50 transition-all shadow-xl">Débuter l'aventure</button>
                         </div>
                     </div>
-                    <div class="lg:col-span-2 bg-indigo-600 rounded-[3.5rem] p-12 text-white text-center shadow-2xl relative overflow-hidden group">
-                        <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-white/10 rounded-full blur-3xl group-hover:scale-110 transition-transform"></div>
-                        <p class="text-[10px] opacity-60 font-black uppercase tracking-[0.3em] mb-6">Investissement Mensuel</p>
-                        <h3 class="text-5xl font-black mb-12"><span id="total-budget">1 000 000</span> <br/><span class="text-sm font-normal opacity-40">FCFA</span></h3>
-                        <button class="w-full bg-white text-indigo-600 py-6 rounded-full font-black text-lg hover:bg-slate-50 transition-all shadow-xl">Débuter l'essai</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION FAQ -->
+    <section id="faq" class="py-40 bg-slate-50">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-24 reveal">
+                <span class="text-indigo-600 font-black uppercase text-xs tracking-[0.4em]">Aide & Support</span>
+                <h2 class="text-5xl font-black text-navy mt-6 tracking-tighter">On répond à <span class="text-indigo-600 italic">tout.</span></h2>
+            </div>
+
+            <div class="space-y-6">
+                <!-- FAQ Item 1 -->
+                <div class="accordion-item reveal glass-ui rounded-[2.5rem] overflow-hidden">
+                    <button class="w-full p-10 flex justify-between items-center text-left" onclick="toggleAccordion(this)">
+                        <span class="text-xl font-black text-navy">Mes données sont-elles vraiment en sécurité ?</span>
+                        <div class="accordion-icon w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-2xl transition-transform">+</div>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="px-10 pb-10 text-slate-500 font-medium">
+                            Absolument. Vos données sont chiffrées selon les standards bancaires et hébergées localement au Bénin, conformément à la loi sur le numérique pour assurer une protection totale.
+                        </div>
+                    </div>
+                </div>
+                <!-- FAQ Item 2 -->
+                <div class="accordion-item reveal glass-ui rounded-[2.5rem] overflow-hidden">
+                    <button class="w-full p-10 flex justify-between items-center text-left" onclick="toggleAccordion(this)">
+                        <span class="text-xl font-black text-navy">L'intégration Mobile Money est-elle compliquée ?</span>
+                        <div class="accordion-icon w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-2xl transition-transform">+</div>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="px-10 pb-10 text-slate-500 font-medium">
+                            Pas du tout. Nous nous occupons de la liaison technique avec vos comptes MTN et Moov. Les paiements des parents sont automatiquement validés dans votre système.
+                        </div>
+                    </div>
+                </div>
+                <!-- FAQ Item 3 -->
+                <div class="accordion-item reveal glass-ui rounded-[2.5rem] overflow-hidden">
+                    <button class="w-full p-10 flex justify-between items-center text-left" onclick="toggleAccordion(this)">
+                        <span class="text-xl font-black text-navy">Proposez-vous une formation pour mon équipe ?</span>
+                        <div class="accordion-icon w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-2xl transition-transform">+</div>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="px-10 pb-10 text-slate-500 font-medium">
+                            Oui, nous organisons des sessions de formation immersives à Cotonou ou sur place dans votre école pour garantir que tout votre personnel maîtrise l'outil en 48h.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -337,48 +426,99 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-slate-50 py-32 px-6 border-t border-slate-100">
+    <footer class="bg-white py-32 px-6 border-t border-slate-100">
         <div class="max-w-7xl mx-auto">
             <div class="grid lg:grid-cols-4 gap-20 mb-28">
                 <div class="col-span-2">
                     <div class="flex items-center gap-3 mb-10">
-                        <div class="w-10 h-10 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center text-xl">🇧🇯</div>
-                        <span class="text-2xl font-black tracking-tight text-navy">Édu<span class="text-accent">Gest</span></span>
+                        <div class="w-12 h-12 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center text-2xl">🇧🇯</div>
+                        <span class="text-3xl font-black tracking-tight text-navy">Édu<span class="text-accent">Gest</span></span>
                     </div>
-                    <p class="text-slate-400 max-w-sm leading-relaxed text-lg mb-10 font-body italic">"Cultiver l'avenir numérique de chaque école béninoise."</p>
-                    <div class="flex gap-6">
-                        <a href="#" class="w-12 h-12 rounded-full bg-white border border-slate-100 flex items-center justify-center text-navy hover:bg-indigo-600 hover:text-white transition-all shadow-sm">f</a>
-                        <a href="#" class="w-12 h-12 rounded-full bg-white border border-slate-100 flex items-center justify-center text-navy hover:bg-indigo-600 hover:text-white transition-all shadow-sm">in</a>
-                    </div>
+                    <p class="text-slate-400 max-w-sm leading-relaxed text-xl font-body italic">"Plus qu'un logiciel, un partenaire pour bâtir l'éducation de demain au Bénin."</p>
                 </div>
                 <div>
-                    <h5 class="font-black text-[10px] uppercase tracking-[0.3em] mb-10 text-slate-300">Exploration</h5>
+                    <h5 class="font-black text-[11px] uppercase tracking-[0.3em] mb-10 text-slate-300">Exploration</h5>
                     <ul class="space-y-6 text-sm font-bold text-slate-500">
-                        <li><a href="#" class="hover:text-accent transition-colors">Notre Blog</a></li>
-                        <li><a href="#" class="hover:text-accent transition-colors">Études de cas</a></li>
-                        <li><a href="#" class="hover:text-accent transition-colors">Fonctionnalités</a></li>
+                        <li><a href="#vision" class="hover:text-accent transition-colors">Vision</a></li>
+                        <li><a href="#features" class="hover:text-accent transition-colors">Produit</a></li>
+                        <li><a href="#pricing" class="hover:text-accent transition-colors">Tarifs</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h5 class="font-black text-[10px] uppercase tracking-[0.3em] mb-10 text-slate-300">Aide</h5>
+                    <h5 class="font-black text-[11px] uppercase tracking-[0.3em] mb-10 text-slate-300">Aide</h5>
                     <ul class="space-y-6 text-sm font-bold text-slate-500">
-                        <li><a href="#" class="hover:text-accent transition-colors">Centre d'aide</a></li>
-                        <li><a href="#" class="hover:text-accent transition-colors">Sécurité</a></li>
+                        <li><a href="#faq" class="hover:text-accent transition-colors">FAQ</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Support</a></li>
                         <li><a href="#" class="hover:text-accent transition-colors">Contact</a></li>
                     </ul>
                 </div>
             </div>
             <div class="pt-12 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-10">
-                <p class="text-[10px] text-slate-400 font-black uppercase tracking-widest">© 2026 ÉduGest Bénin. Tous droits réservés.</p>
-                <div class="flex gap-10 text-[10px] font-black text-slate-400 uppercase tracking-widest">
-                    <a href="#" class="hover:text-navy">Confidentialité</a>
-                    <a href="#" class="hover:text-navy">Mentions Légales</a>
+                <p class="text-[11px] text-slate-400 font-black uppercase tracking-widest">© 2026 ÉduGest Bénin. Tous droits réservés.</p>
+                <div class="flex gap-10 text-[11px] font-black text-slate-400 uppercase tracking-widest">
+                    <a href="#">Confidentialité</a>
+                    <a href="#">Mentions Légales</a>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
+        // === ARTICLES DATA ===
+        const articles = {
+            savior: {
+                title: 'Doubler son recouvrement avec le Mobile Money',
+                content: `
+                    <h2 class="text-4xl font-black mb-8 leading-tight">L'impact de la digitalisation sur les finances scolaires.</h2>
+                    <div class="space-y-6 text-lg text-slate-600 font-body">
+                        <p>Le Complexe Scolaire "Le Savoir" a réduit ses impayés de 60% en intégrant le paiement via MTN et Moov. Plus besoin de reçus physiques fragiles.</p>
+                        <ul class="list-disc pl-6 space-y-4 font-bold text-navy">
+                            <li>Trésorerie fluide en temps réel</li>
+                            <li>Zéro erreur de saisie</li>
+                            <li>Relances SMS automatiques</li>
+                        </ul>
+                    </div>`
+            },
+            bulletins: {
+                title: 'La fin de la corvée des bulletins',
+                content: `
+                    <h2 class="text-4xl font-black mb-8 leading-tight">Gain de temps massif pour vos enseignants.</h2>
+                    <div class="space-y-6 text-lg text-slate-600 font-body">
+                        <p>Fini les calculs de moyennes qui durent des nuits entières. Avec ÉduGest, le système s'occupe de tout d'un simple clic.</p>
+                    </div>`
+            },
+            benin: {
+                title: 'Pourquoi choisir le local ?',
+                content: `
+                    <h2 class="text-4xl font-black mb-8 leading-tight">Un outil fait pour et par des Béninois.</h2>
+                    <div class="space-y-6 text-lg text-slate-600 font-body">
+                        <p>Nous comprenons les normes du MEMP et les réalités du terrain comme personne d'autre. Vos données restent sur notre territoire.</p>
+                    </div>`
+            }
+        };
+
+        // === MODAL FUNCTIONS ===
+        function openArticle(id) {
+            const article = articles[id];
+            if (!article) return;
+            document.getElementById('modal-content').innerHTML = article.content;
+            document.getElementById('article-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeArticle() {
+            document.getElementById('article-modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // === ACCORDION FAQ ===
+        function toggleAccordion(btn) {
+            const item = btn.closest('.accordion-item');
+            const isActive = item.classList.contains('active');
+            document.querySelectorAll('.accordion-item').forEach(el => el.classList.remove('active'));
+            if (!isActive) item.classList.add('active');
+        }
+
         // === CALCULATEUR DYNAMIQUE ===
         const slider = document.getElementById('student-slider');
         const countDisplay = document.getElementById('student-count-display');
@@ -398,19 +538,14 @@
         // === NAVBAR SCROLL ===
         window.addEventListener('scroll', function() {
             const nav = document.getElementById('navbar');
-            if (window.scrollY > 80) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
+            if (window.scrollY > 80) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
         });
 
         // === REVEAL ANIMATIONS ===
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
         }, { threshold: 0.1 });
 
